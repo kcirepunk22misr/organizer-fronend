@@ -1,0 +1,143 @@
+<button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Agregar <i class="fas fa-plus"></i></button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Herramienta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="card sombras border-0 rounded-0">
+                    <div class="card-body">
+                        <form [formGroup]="forma" (ngSubmit)="save()">
+                            <div class="form-gruop row">
+                                <div class="col-6">
+                                    <label for="name">Nombre</label>
+                                    <input [class.is-invalid]="validarCampos('name')" formControlName="name" id="name" type="text" class="form-control" placeholder="Nombre">
+
+                                </div>
+                                <div class="col-6">
+                                    <label for="group">Grupo</label>
+                                    <select [class.is-invalid]="validarCampos('group')" formControlName="group" class="form-control" id="group">
+                                        <ng-template ngFor let-group [ngForOf]="groups">
+                                            <option [value]="group.name">{{ group.name }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-gruop row">
+                                <div class="col-6">
+                                    <label for="type">Tipo</label>
+                                    <select [class.is-invalid]="validarCampos('type')" formControlName="type" class="form-control" id="type">
+                                        <ng-template ngFor let-type [ngForOf]="types">
+                                            <option [value]="type.name">{{ type.name }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="marca">Marca</label>
+                                    <select [class.is-invalid]="validarCampos('marca')" formControlName="marca" id="marca" class="form-control">
+                                        <ng-template ngFor let-marca [ngForOf]="marcas">
+                                            <option [value]="marca.name">{{ marca.name }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-gruop row">
+                                <div class="col-6">
+                                    <label for="size">Tamaño</label>
+                                    <select [class.is-invalid]="validarCampos('size')" formControlName="size" id="size" class="form-control">
+                                        <ng-template ngFor let-size [ngForOf]="sizes">
+                                            <option [value]="size.name">{{ size.name }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="color">Color</label>
+                                    <select [class.is-invalid]="validarCampos('color')" formControlName="color" id="color" class="form-control">
+                                        <ng-template ngFor let-color [ngForOf]="colors">
+                                            <option [value]="color.name">{{ color.name }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-gruop row">
+                                <div class="col-6">
+                                    <label for="escaparate">Ubicacion - Escaparate</label>
+                                    <select [class.is-invalid]="validarCampos('location')" formControlName="location" id="escaparate" class="form-control">
+                                        <ng-template ngFor let-ubicacione [ngForOf]="ubicaciones">
+                                            <option [value]="ubicacione.escaparate">{{ ubicacione.escaparate }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label for="fila">Fila</label>
+                                    <select id="escaparate" class="form-control">
+                                        <ng-template ngFor let-ubicacione [ngForOf]="ubicaciones">
+                                            <option [value]="ubicacione.fila">{{ ubicacione.columna }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label for="columna">Columna</label>
+                                    <select id="escaparate" class="form-control">
+                                        <ng-template ngFor let-ubicacione [ngForOf]="ubicaciones">
+                                            <option [value]="ubicacione.fila">{{ ubicacione.fila }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-gruop row">
+                                <div class="col-6">
+                                    <label id="cantidad" for="cantidad">Cantidad</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                        </div>
+                                        <input [class.is-invalid]="validarCampos('quantify')" formControlName="quantify" id="cantidad" type="number" class="form-control text-center" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+                                                    <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="state">Estado</label>
+                                    <select [class.is-invalid]="validarCampos('state')" formControlName="state" id="state" class="form-control">
+                                        <ng-template ngFor let-state [ngForOf]="states">
+                                            <option [value]="state.name">{{ state.name }}</option>
+                                        </ng-template>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-gruop row">
+                                <div class="col-12">
+                                    <label for="image">Subir Imagen</label>
+                                    <div class="custom-file">
+                                        <input id="image" type="file" (change)="fileChangeEvent($event)" class="custom-file-input" id="validatedCustomFile" required>
+                                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col d-flex flex-row justify-content-end">
+                                    <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary ">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
